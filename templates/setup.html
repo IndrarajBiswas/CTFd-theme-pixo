@@ -17,19 +17,19 @@
 			<form method="post" accept-charset="utf-8" autocomplete="off" role="form" class="form-horizontal" id="setup-form" enctype="multipart/form-data">
 				<ul class="nav nav-pills nav-fill mb-4">
 					<li class="nav-item">
-						<a class="nav-link active" data-toggle="pill" href="#general">General</a>
+						<a class="nav-link active" data-bs-toggle="pill" href="#general">General</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" data-toggle="pill" href="#administration">Administration</a>
+						<a class="nav-link" data-bs-toggle="pill" href="#administration">Administration</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" data-toggle="pill" href="#style">Style</a>
+						<a class="nav-link" data-bs-toggle="pill" href="#style">Style</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" data-toggle="pill" href="#datetime">Date &amp; Time</a>
+						<a class="nav-link" data-bs-toggle="pill" href="#datetime">Date &amp; Time</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" data-toggle="pill" href="#integrations">Integrations</a>
+						<a class="nav-link" data-bs-toggle="pill" href="#integrations">Integrations</a>
 					</li>
 				</ul>
 
@@ -54,7 +54,7 @@
 						<div class="form-group">
 							<b>{{ form.user_mode.label }}</b>
 							{% for radio in form.user_mode %}
-								<div class="form-check ml-3">
+                                                             <div class="form-check ms-3">
 									{{ radio(class="form-check-input") }}
 									{{ radio.label }}
 								</div>
@@ -141,7 +141,7 @@
 							<div class="d-inline-block">
 								{{ form.theme_color(id="config-color-input") }}
 								<div class="btn-group">
-									<input type="color" id="config-color-picker" class="pr-1" style="width: 100px; height: 30px;" value="">
+                                                                    <input type="color" id="config-color-picker" class="pe-1" style="width: 100px; height: 30px;" value="">
 								</div>
 								<div class="btn-group">
 									<button type="button" id="config-color-reset">Reset</button>
@@ -219,7 +219,7 @@
 								<li>archive challenges, team participation &amp; more</li>
 							</ul>
 							</p>
-							<button type="button" id="integration-mlc" class="btn btn-primary btn-block">
+                                                    <button type="button" id="integration-mlc" class="btn btn-primary w-100">
 								Setup
 							</button>
 						</div>

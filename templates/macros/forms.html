@@ -1,46 +1,52 @@
 {% macro render_extra_fields(fields, show_labels=True, show_optionals=True, show_descriptions=True) -%}
-    {% for field in fields %}
-    <div class="form-group">
-        {% if field.field_type == "text" %}
-            {% if show_labels %}
-                <b>{{ field.label }}</b>
+  {% for field in fields %}
+    {% set optional = show_optionals and field.flags.required is defined and field.flags.required is false %}
+    {% if field.field_type == "boolean" %}
+      <div class="mb-3">
+        {% if show_labels %}
+          <div>
+            {{ field.label(class="form-label") }}
+            {% if optional %}
+              <small class="ms-1 text-muted">(Optional)</small>
             {% endif %}
-
-            {% if show_optionals %}
-                {% if field.flags.required is false %}
-                    <small class="float-right text-muted">Optional</small>
-                {% endif %}
-            {% endif %}
-
-            {{ field(class="form-control") }}
-
-            {% if show_descriptions %}
-                {% if field.description %}
-                <small class="form-text text-muted">
-                    {{ field.description }}
-                </small>
-                {% endif %}
-            {% endif %}
-        {% elif field.field_type == "boolean" %}
-            <div class="form-check">
-                {{ field(class="form-check-input") }}
-                {{ field.label(class="form-check-label") }}
-
-                {% if show_optionals %}
-                    {% if field.flags.required is false %}
-                        <sup class="text-muted">Optional</sup>
-                    {% endif %}
-                {% endif %}
-            </div>
-
-            {% if show_descriptions %}
-                {% if field.description %}
-                <small class="form-text text-muted">
-                    {{ field.description }}
-                </small>
-                {% endif %}
-            {% endif %}
+          </div>
         {% endif %}
-    </div>
-    {% endfor %}
+        <div class="border border-1 p-3">
+          <div class="form-check">
+            {{ field(class="form-check-input") }}
+            {{ field.label(class="form-check-label") }}
+          </div>
+          {% if show_descriptions and field.description %}
+            <small class="form-text text-muted">{{ field.description }}</small>
+          {% endif %}
+        </div>
+      </div>
+    {% elif field.field_type == "select" %}
+      <div class="mb-3">
+        {% if show_labels %}
+          <b>{{ field.label(class="form-label") }}</b>
+          {% if optional %}
+            <small class="ms-1 text-muted">(Optional)</small>
+          {% endif %}
+        {% endif %}
+        {{ field(class="form-select") }}
+        {% if show_descriptions and field.description %}
+          <small class="form-text text-muted">{{ field.description }}</small>
+        {% endif %}
+      </div>
+    {% else %}
+      <div class="mb-3">
+        {% if show_labels %}
+          <b>{{ field.label(class="form-label") }}</b>
+          {% if optional %}
+            <small class="ms-1 text-muted">(Optional)</small>
+          {% endif %}
+        {% endif %}
+        {{ field(class="form-control") }}
+        {% if show_descriptions and field.description %}
+          <small class="form-text text-muted">{{ field.description }}</small>
+        {% endif %}
+      </div>
+    {% endif %}
+  {% endfor %}
 {%- endmacro %}

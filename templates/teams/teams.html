@@ -63,21 +63,21 @@
 						{% endif %}
 						{% if team.oauth_id %}
 							<a href="https://majorleaguecyber.org/t/{{ team.name }}">
-								<span class="badge badge-primary">Official</span>
+                                                            <span class="badge bg-primary">Official</span>
 							</a>
 						{% endif %}
 						</td>
 						<td class="text-center" style="width: 10px;">
 							{% if team.website and (team.website.startswith('http://') or team.website.startswith('https://')) %}
 								<a href="{{ team.website }}" target="_blank" rel="noopener">
-									<i class="fas fa-external-link-alt" data-toggle="tooltip" data-placement="top" title="{{ team.website }}"></i>
+									<i class="fas fa-external-link-alt" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ team.website }}"></i>
 								</a>
 							{% endif %}
 						</td>
 						<td class="d-none d-md-table-cell d-lg-table-cell">
 							{% if team.affiliation %}
 								{% if team.affiliation | length > 50 %}
-								<span data-toggle="tooltip" data-placement="top" title="{{ team.affiliation }}">
+								<span data-bs-toggle="tooltip" data-bs-placement="top" title="{{ team.affiliation }}">
 									{% if team.affiliation %}{{ team.affiliation | truncate(50) }}{% endif %}
 								</span>
 								{% else %}

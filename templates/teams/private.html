@@ -9,9 +9,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<h2 class="modal-action text-center w-100">Edit Team</h2>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<div class="modal-body clearfix">
 					{% with form = Forms.teams.TeamSettingsForm(obj=team) %}
@@ -67,7 +65,7 @@
 						<div id="results">
 
 						</div>
-						{{ form.submit(class="btn btn-primary btn-outlined float-right modal-action") }}
+                                            {{ form.submit(class="btn btn-primary btn-outlined float-end modal-action") }}
 					</form>
 					{% endwith %}
 				</div>
@@ -80,9 +78,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<h2 class="modal-action text-center w-100">Choose Captain</h2>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<div class="modal-body clearfix">
 					{% with form = Forms.teams.TeamCaptainForm(captain_id=team.captain_id) %}
@@ -97,7 +93,7 @@
 						</div>
 						<div id="results">
 						</div>
-						{{ form.submit(class="btn btn-primary btn-outlined float-right modal-action") }}
+                                            {{ form.submit(class="btn btn-primary btn-outlined float-end modal-action") }}
 					</form>
 					{% endwith %}
 				</div>
@@ -110,9 +106,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<h2 class="modal-action text-center w-100">Invite Users</h2>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<div class="modal-body clearfix">
 					{% with form = Forms.teams.TeamInviteForm() %}
@@ -144,23 +138,23 @@
 	<div class="jumbotron">
 		<div class="container">
 			<h1 id="team-id" team-id="{{ team.id }}">{{ team.name }}</h1>
-			{% if team.oauth_id %}
-				<a href="https://majorleaguecyber.org/t/{{ team.name }}">
-					<h3><span class="badge badge-primary">Official</span></h3>
-				</a>
-			{% endif %}
-			{% if team.affiliation %}
-				<h3 class="d-inline-block">
-					<span class="badge badge-primary">{{ team.affiliation }}</span>
-				</h3>
-			{% endif %}
-			{% if team.country %}
-				<h3 class="d-inline-block">
-					<span class="badge badge-primary">
-						<i class="flag-{{ team.country.lower() }}"></i>
-						{{ lookup_country_code(team.country) }}
-					</span>
-				</h3>
+                        {% if team.oauth_id %}
+                                <a href="https://majorleaguecyber.org/t/{{ team.name }}">
+                                        <h3><span class="badge bg-primary">Official</span></h3>
+                                </a>
+                        {% endif %}
+                        {% if team.affiliation %}
+                                <h3 class="d-inline-block">
+                                        <span class="badge bg-primary">{{ team.affiliation }}</span>
+                                </h3>
+                        {% endif %}
+                        {% if team.country %}
+                                <h3 class="d-inline-block">
+                                        <span class="badge bg-primary">
+                                                <i class="flag-{{ team.country.lower() }}"></i>
+                                                {{ lookup_country_code(team.country) }}
+                                        </span>
+                                </h3>
 			{% endif %}
 			{% for field in team.fields %}
 				<h3 class="d-block">
@@ -188,51 +182,51 @@
 				<a class="edit-team">
 					{% if team.captain_id == user.id %}
 						<i class="btn-fa fas fa-cogs fa-2x px-2"
-						   data-toggle="tooltip"
-						   data-placement="top"
+						   data-bs-toggle="tooltip"
+						   data-bs-placement="top"
 						   title="Edit Team"></i>
 
 						<a class="edit-captain">
-							<i class="btn-fa fas fa-user-tag fa-2x px-2" data-toggle="tooltip" data-placement="top"
+							<i class="btn-fa fas fa-user-tag fa-2x px-2" data-bs-toggle="tooltip" data-bs-placement="top"
 							   title="Choose Captain"></i>
 						</a>
 
 						<a class="invite-members">
-							<i class="btn-fa fas fa-ticket-alt fa-2x px-2" data-toggle="tooltip" data-placement="top"
+							<i class="btn-fa fas fa-ticket-alt fa-2x px-2" data-bs-toggle="tooltip" data-bs-placement="top"
 							   title="Invite Users"></i>
 						</a>
 						<a class="disband-team">
-							<i class="btn-fa fas fa-trash-alt fa-2x px-2" data-toggle="tooltip" data-placement="top"
+							<i class="btn-fa fas fa-trash-alt fa-2x px-2" data-bs-toggle="tooltip" data-bs-placement="top"
 								title="Disband Team"></i>
 						</a>
 					{% else %}
 						<i class="btn-fa fas fa-cogs fa-2x px-2 fa-disabled"
-						   data-toggle="tooltip"
-						   data-placement="top"
+						   data-bs-toggle="tooltip"
+						   data-bs-placement="top"
 						   title="Only team captains can edit team information"></i>
 						<a class="edit-captain">
 							<i class="btn-fa fas fa-user-tag fa-2x px-2 fa-disabled"
-							   data-toggle="tooltip"
-							   data-placement="top"
+							   data-bs-toggle="tooltip"
+							   data-bs-placement="top"
 							   title="Only team captains can choose a new captain"></i>
 						</a>
 						<a class="invite-members">
 							<i class="btn-fa fas fa-ticket-alt fa-2x px-2"
-								data-toggle="tooltip"
-								data-placement="top"
+								data-bs-toggle="tooltip"
+								data-bs-placement="top"
 								title="Only team captains can generate invite links"></i>
 						</a>
 						<a class="disband-team">
 							<i class="btn-fa fas fa-trash-alt fa-2x px-2 fa-disabled"
-								data-toggle="tooltip"
-								data-placement="top"
+								data-bs-toggle="tooltip"
+								data-bs-placement="top"
 								title="Only team captains can disband the team"></i>
 						</a>
 					{% endif %}
 				</a>
 				{% if team.website and (team.website.startswith('http://') or team.website.startswith('https://')) %}
 					<a href="{{ team.website }}" target="_blank" style="color: inherit;" rel="noopener">
-						<i class="fas fa-external-link-alt fa-2x px-2" data-toggle="tooltip" data-placement="top"
+						<i class="fas fa-external-link-alt fa-2x px-2" data-bs-toggle="tooltip" data-bs-placement="top"
 						   title="{{ team.website }}"></i>
 					</a>
 				{% endif %}
@@ -262,7 +256,7 @@
 									{{ member.name }}
 								</a>
 								{% if team.captain_id == member.id %}
-									<span class="badge badge-primary ml-2">Captain</span>
+                                                                    <span class="badge bg-primary ms-2">Captain</span>
 								{% endif %}
 							</td>
 							<td>{{ member.score }}</td>
